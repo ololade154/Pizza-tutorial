@@ -6,42 +6,42 @@ const pizzaData = [
     name: 'Focaccia',
     ingredients: 'Bread with italian olive oil and rosemary',
     price: 6,
-    photoName: 'pizzas/focaccia.jpg',
+    photoName: 'pizza-images/focaccia.jpg',
     soldOut: false,
   },
   {
     name: 'Pizza Margherita',
     ingredients: 'Tomato and mozarella',
     price: 10,
-    photoName: 'pizzas/margherita.jpg',
+    photoName: 'pizza-images/margherita.jpg',
     soldOut: false,
   },
   {
     name: 'Pizza Spinaci',
     ingredients: 'Tomato, mozarella, spinach, and ricotta cheese',
     price: 12,
-    photoName: 'pizzas/spinaci.jpg',
+    photoName: 'pizza-images/spinaci.jpg',
     soldOut: false,
   },
   {
     name: 'Pizza Funghi',
     ingredients: 'Tomato, mozarella, mushrooms, and onion',
     price: 12,
-    photoName: 'pizzas/funghi.jpg',
+    photoName: 'pizza-images/funghi.jpg',
     soldOut: false,
   },
   {
     name: 'Pizza Salamino',
     ingredients: 'Tomato, mozarella, and pepperoni',
     price: 15,
-    photoName: 'pizzas/salamino.jpg',
+    photoName: 'pizza-images/salamino.jpg',
     soldOut: true,
   },
   {
     name: 'Pizza Prosciutto',
     ingredients: 'Tomato, mozarella, ham, aragula, and burrata cheese',
     price: 18,
-    photoName: 'pizzas/prosciutto.jpg',
+    photoName: 'pizza-images/prosciutto.jpg',
     soldOut: false,
   },
 ];
@@ -68,10 +68,37 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our menu</h2>
-      <Pizza></Pizza>
-      <Pizza></Pizza>
-      <Pizza></Pizza>
+      <ul className="pizzas">
+        {pizzaData.map((pizza) => (
+          <Pizza pizzaObj={pizza} key={pizza.name}></Pizza>
+        ))}
+      </ul>
+      {/* <Pizza
+        name="pizza spinaci"
+        ingredients="Tomato, mozarella, and pepperoni"
+        photoName="pizza-images/spinaci.jpg"
+        price={10}
+      ></Pizza>
+      <Pizza
+        name="Focaccia"
+        ingredients="Bread with italian olive oil and rosemary"
+        photoName="pizza-images/Focaccia.jpg "
+        price={6}
+      ></Pizza> */}
     </main>
+  );
+}
+function Pizza(props) {
+  console.log(props);
+  return (
+    <li className="pizza">
+      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name}></img>
+      <div>
+        <h3>{props.pizzaObj.name}</h3>
+        <p>{props.pizzaObj.ingredients}</p>
+        <span>{props.pizzaObj.price + 3}</span>
+      </div>
+    </li>
   );
 }
 function Footer() {
@@ -89,15 +116,6 @@ function Footer() {
     <footer className="footer">
       {new Date().toLocaleTimeString()} We're currently open
     </footer>
-  );
-}
-function Pizza() {
-  return (
-    <div>
-      <img src="pizza-images/spinaci.jpg" alt="pizza spinaci"></img>
-      <h3>Pizza Spinaci</h3>
-      <p>Tomato, mozarella, and pepperoni</p>
-    </div>
   );
 }
 
